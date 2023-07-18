@@ -41,7 +41,7 @@
         </div>
       </div>
 
-      <p>滚动条可以滚动</p>
+      <p>点击取消，滚动条可以滚动</p>
     </t-popup>
   </div>
 </template>
