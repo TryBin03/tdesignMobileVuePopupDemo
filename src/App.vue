@@ -1,22 +1,26 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
+import GridDemo from "./components/gridDemo.vue";
+import {ref} from "vue";
+
+const show = ref();
+const select = (v:string) => {
+  show.value = v;
+}
 </script>
 
 <template>
-  <HelloWorld msg="Vite + Vue" />
+  <div class="">
+    <t-button theme="primary" @click="select('popup')">popup</t-button>
+    <t-button theme="primary" @click="select('grid-item')">grid-item</t-button>
+  </div>
+  <p>1. 查看popup问题请点击popup按钮</p>
+  <p>2. 查看grid-item问题请点击grid-item按钮</p>
+
+
+  <HelloWorld v-if="show === 'popup'" />
+  <GridDemo v-if="show === 'grid-item'" />
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
 </style>
