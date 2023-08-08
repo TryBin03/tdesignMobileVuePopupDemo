@@ -1,8 +1,8 @@
 <template>
   <t-grid :column="3" class="grid-demo">
-    <t-grid-item :text="item.text" v-for="item in list">
+    <t-grid-item :text="item.text"  v-for="(item, index) in list">
       <template #image>
-        <div class="icon-wrapper">
+        <div :key="index" class="icon-wrapper">
           {{ item.icon }}
         </div>
       </template>
