@@ -1,12 +1,13 @@
 <template>
 <div style="background: #888888">
-  <div class="trade-item" :key="index" v-for="(item, index) in list">
-    <swipe-cell-item  :item="item" @delete="deleteItem"></swipe-cell-item>
+  <div class="trade-item"  v-for="(item, index) in list">
+    <swipe-cell-item :key="index" :item="item" @delete="deleteItem"></swipe-cell-item>
   </div>
 </div>
   <p>1.向左滑动，点击删除</p>
   <p>2.点击确认删除</p>
   <p>3.删除成功，但是还是会显示删除按钮</p>
+  <p>ps:请移动端操作</p>
 </template>
 
 <script lang="ts" setup>
@@ -18,14 +19,6 @@ const list = ref([
   {text: "投币", icon: "🪙"},
   {text: "点赞", icon: "⭐"}
 ])
-
-const handoff = () => {
-  list.value = [
-    {text: "1", icon: "🔢"},
-    {text: "2", icon: "🔢🔢"},
-    {text: "3", icon: "🔢🔢🔢"}
-  ]
-}
 
 const deleteItem = (text) => {
   var index = list.value.findIndex(i => i.text == text);

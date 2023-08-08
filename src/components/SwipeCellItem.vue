@@ -31,13 +31,14 @@ const props = defineProps({
 const emit = defineEmits(['delete'])
 
 const cell = ref();
+const opened = ref([false, false])
 
 const handleDelete = () => {
   cell.value.showSure("sure-delete");
 }
 const handleSureDelete = (item) => {
-
   emit('delete', item.text)
+  opened.value[1] = false
 }
 </script>
 <style scoped lang="less">
