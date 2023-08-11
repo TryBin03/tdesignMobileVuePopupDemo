@@ -1,9 +1,7 @@
 <template>
-<div style="background: #888888">
-    <t-swipe-cell v-for="(item, index) in list" :key="item.text" ref="tradeList">
-      <div class="trade-item" >
-        <swipe-cell-item  :item="item"></swipe-cell-item>
-      </div>
+  <div>
+    <t-swipe-cell v-for="(item, index) in list" ref="cell" :key="item.text">
+      <t-cell :title="item.text + item.icon + index" note="辅助信息"></t-cell>
       <template #right>
         <div class="btn delete-btn" @click="handleDelete(item.text)">删除</div>
       </template>
@@ -15,38 +13,32 @@
         <div class="btn delete-btn" @click="handleSureDelete(item.text)">确认删除？</div>
       </template>
     </t-swipe-cell>
-</div>
-  <p>1.向左滑动，点击删除</p>
-  <p>2.点击确认删除</p>
-  <p>3.删除成功，但是还是会显示删除按钮</p>
-  <p>ps:请移动端操作</p>
+  </div>
 </template>
 
-<script lang="ts" setup>
-import {ref} from "vue";
-import SwipeCellItem from "./SwipeCellItem.vue";
+<script setup lang="ts">
+import { ref } from 'vue';
 
-const tradeList = ref()
-
-const list = ref([
-  {text: "点赞", icon: "👍"},
-  {text: "投币", icon: "🪙"},
-  {text: "点赞", icon: "⭐"}
-])
+const cell = ref();
 
 const handleDelete = (text: string) => {
   const index = list.value.findIndex((i) => i.text === text);
-  tradeList.value[index].showSure('sure-delete');
-}
-const handleSureDelete = (text: string) => {
-  var index = list.value.findIndex((i) => i.text === text);
-  list.value.splice(index,1)
-}
+  cell.value[index].showSure('sure-delete');
+};
+
+const list = ref([
+  { text: '点赞1', icon: '👍' },
+  { text: '投币', icon: '🪙' },
+  { text: '点赞2', icon: '⭐' },
+]);
+
+const handleSureDelete = (text: any) => {
+  const index = list.value.findIndex((i) => i.text === text);
+  list.value.splice(index, 1);
+};
 </script>
+
 <style scoped lang="less">
-.trade-item{
-  width: 300px;
-}
 .btn {
   display: inline-flex;
   justify-content: center;
