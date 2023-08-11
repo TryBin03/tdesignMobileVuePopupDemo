@@ -1,6 +1,6 @@
 <template>
 <div style="background: #888888">
-    <t-swipe-cell v-for="(item, index) in list" :key="item.text" ref="tradeList">
+    <t-swipe-cell v-for="(item, index) in list" :key="item.text" ref="tradeList" :opened="opened" @change="handleChange">
       <div class="trade-item" >
         <swipe-cell-item  :item="item"></swipe-cell-item>
       </div>
@@ -27,6 +27,7 @@ import {ref} from "vue";
 import SwipeCellItem from "./SwipeCellItem.vue";
 
 const tradeList = ref()
+const opened = ref([false, false]);
 
 const list = ref([
   {text: "点赞", icon: "👍"},
@@ -42,6 +43,26 @@ const handleSureDelete = (text: string) => {
   var index = list.value.findIndex((i) => i.text === text);
   list.value.splice(index,1)
 }
+
+
+const notGeneral = (text: any) => {
+  console.log("111")
+  const index = list.value.findIndex((i) => i.text === text);
+  opened.value[dir.value === 'left' ? 0 : 1] = false;
+  // cell.value[index].opened[0] = false;
+}
+const dir = ref('right');
+
+const handleChange = (d: string) => {
+  console.log(d);
+  if (d) {
+    opened.value[d === 'left' ? 0 : 1] = true;
+  } else {
+    opened.value[0] = false;
+    opened.value[1] = false;
+  }
+  dir.value = d;
+};
 </script>
 <style scoped lang="less">
 .trade-item{
