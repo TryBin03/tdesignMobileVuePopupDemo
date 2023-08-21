@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {ref} from "vue";
-import SwipeCellDemo from "./components/SwipeCellDemo.vue";
-import SwipeCellDemo2 from "./components/SwipeCellDemo2.vue";
+import SwipeCellDemo3 from "./components/SwipeCellDemo3.vue";
 
 const show = ref();
 const select = (v:string) => {
@@ -21,8 +20,7 @@ const select = (v:string) => {
 
 <!--  <HelloWorld v-if="show === 'popup'" />
   <GridDemo v-if="show === 'grid-item'" />-->
-  <SwipeCellDemo />
-  <SwipeCellDemo2 />
+  <SwipeCellDemo3 />
 </template>
 
 <style scoped>
