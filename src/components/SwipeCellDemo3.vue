@@ -1,8 +1,24 @@
 <template>
-  <div>
-    <t-button @click="visible = true">弹出</t-button>
+  <div style="width: 100vw">
+    <p>左右滑动有效</p>
+    <p>ps:请移动端操作</p>
+      <t-swipe-cell v-for="(item, index) in list" ref="cell" :key="item.text" :opened="opened" @change="handleChange">
+        <t-cell :title="item.text + item.icon + index" note="辅助信息"></t-cell>
+        <template #right>
+          <div class="btn delete-btn" @click="handleDelete(item.text)">删除</div>
+        </template>
+        <template #left>
+          <div class="btn notCounted-btn" @click="notGeneral(item.text)">不计入总账</div>
+          <div class="btn edit-btn">编辑</div>
+        </template>
+        <template #sure-delete>
+          <div class="btn delete-btn" @click="handleSureDelete(item.text)">确认删除？</div>
+        </template>
+      </t-swipe-cell>
+    <t-button @click="visible = true">弹出popup</t-button>
     <t-popup :visible="visible" :placement="'bottom'">
-      <t-cell-group theme="card">
+      <p>左右滑动无效</p>
+      <t-button @click="visible = false">收起popup</t-button>
         <t-swipe-cell v-for="(item, index) in list" ref="cell" :key="item.text" :opened="opened" @change="handleChange">
           <t-cell :title="item.text + item.icon + index" note="辅助信息"></t-cell>
           <template #right>
@@ -16,7 +32,6 @@
             <div class="btn delete-btn" @click="handleSureDelete(item.text)">确认删除？</div>
           </template>
         </t-swipe-cell>
-      </t-cell-group>
     </t-popup>
 
   </div>
