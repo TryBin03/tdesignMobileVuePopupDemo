@@ -1,4 +1,4 @@
 # 此仓库只作反馈BUG
 
 ## t-swipe-cell
-点击确认删除不会隐藏按钮
+t-swipe-cell 在 t-popup 中无法左右滑动
